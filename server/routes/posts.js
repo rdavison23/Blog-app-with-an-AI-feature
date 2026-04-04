@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
     );
     res.json(result.rows);
   } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch posts' });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -24,10 +24,28 @@ router.get('/:id', async (req, res) => {
     }
     res.json(result.row[0]);
   } catch (err) {
-    res.status(500).json({ error: 'Post not found' });
+    res.status(500).json({ error: err.message });
   }
 });
 
 //create a new post
+router.put('/:id', async (req, res) => {
+  const { id } = req.params;
+  const { title, body, author } = req.body;
+
+  try {
+    const result = await pool.query(
+      'UPDATE posts SET title + $1, body = $2, author = $3 WHERE ID = $4 RETURNING *'[
+        (title, body, author, id)
+      ]
+    );
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'post not found' });
+    }
+    res.json(result.rows[0]);
+  } catch (err) {
+    res.status(500).json({ err: err.message });
+  }
+});
 
 export default router;
