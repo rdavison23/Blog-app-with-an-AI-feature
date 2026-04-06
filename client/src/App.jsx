@@ -1,15 +1,15 @@
 import { Routes, Route } from 'react-router-dom';
-import PostsList from './pages/postsList.jsx';
-import PostsDetails from './pages/postsDetails';
-import NewPostsForm from '/.page/NewPostsForm';
-
+import PostsList from './pages/PostsList.jsx';
+import PostDetail from './pages/PostDetail.jsx';
+import NewPostForm from './pages/NewPostForm.jsx';
 function App() {
-  return;
-  <Routes>
-    <Route path="/" element={<PostsList />} />
-    <Route path="/post/:id" element={<PostsDetails />} />
-    <Route path="/new" element={<NewPostsForm />} />
-  </Routes>;
+  return (
+    <Routes>
+      <Route path="/" element={<PostsList />} />
+      <Route path="/post/:id" element={<PostDetail />} />
+      <Route path="/new" element={<NewPostForm />} />
+    </Routes>
+  );
 }
 
 export default App;
