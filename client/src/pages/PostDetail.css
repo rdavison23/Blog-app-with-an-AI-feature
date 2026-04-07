@@ -17,3 +17,26 @@
   height: 350px;
   object-fit: cover;
 }
+
+.post-detail-content {
+  padding: 25px;
+}
+
+.post-detail-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.post-detail-author {
+  font-size: 0.95rem;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.post-detail-body {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text);
+  white-space: pre-wrap;
+}
