@@ -11,7 +11,7 @@ export default function PostDetail() {
     getPost(id).then(setPost);
   }, [id]);
 
-  if (!post) return <p>Loading...</p>;
+  if (!post) return <p>Post data is loading, please wait...</p>;
 
   return (
     <div className="post-detail-container">
