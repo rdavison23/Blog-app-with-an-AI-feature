@@ -7,3 +7,6 @@ CREATE TABLE posts (
   author TEXT,
   created_at TIMESTAMP DEFAULT NOW()
 );
+
+ALTER TABLE posts
+ADD COLUMN image_url TEXT;
