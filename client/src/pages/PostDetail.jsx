@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getPost } from '../components/services/PostsApi';
 import './PostDetail.css';
 
@@ -14,7 +14,7 @@ export default function PostDetail() {
   if (!post) return <p>Loading...</p>;
 
   return (
-    <div className='"post-detail-container'>
+    <div className="post-detail-container">
       <div className="post-detail-card">
         <img
           src={
