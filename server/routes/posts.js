@@ -31,13 +31,13 @@ router.get('/:id', async (req, res) => {
 
 //Create a new post
 router.post('/', async (req, res) => {
-  const { title, body, author } = req.body;
+  const { title, body, author, image_url } = req.body;
   if (!title || !body)
     return res.status(400).json({ error: 'title and body are required' });
   try {
     const result = await pool.query(
-      'INSERT INTO posts (title,body,author) VALUES ($1, $2, $3 ) RETURNING *',
-      [title, body, author]
+      'INSERT INTO posts (title, body, author, image_url) VALUES ($1, $2, $3, $4) RETURNING *',
+      [title, body, author, image_url]
     );
     res.status(201).json(result.rows[0]);
   } catch (err) {
