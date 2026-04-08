@@ -45,6 +45,7 @@ router.get('/', async (req, res) => {
 //get post by id
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
+  const { lang } = req.query;
   try {
     const result = await pool.query('SELECT * FROM posts WHERE id =$1', [id]);
     if (result.rows.length === 0) {
@@ -53,8 +54,11 @@ router.get('/:id', async (req, res) => {
 
     const post = result.rows[0];
 
-    // Translate the body to Amharic
-    const translatedBody = await translateText(post.body, 'am');
+    let translatedBody = null;
+
+    if (lang && lang !== 'en') {
+      translatedBody = await translateText(post.body, lang);
+    }
 
     // Return both original + translated
     res.json({
