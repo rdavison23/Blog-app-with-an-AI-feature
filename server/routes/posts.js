@@ -1,7 +1,34 @@
 import express from 'express';
 import pool from '../db.js';
+import { TranslationServiceClient } from '@google-cloud/translate';
 
 const router = express.Router();
+
+// Instantiates a client
+const translationClient = new TranslationServiceClient();
+
+const projectId = 'project-6d34de57-0c50-4378-838';
+const location = 'global';
+
+async function translateText(text, targetLanguageCode) {
+  // Construct requeste
+  const request = {
+    parent: `projects/${projectId}/locations/${location}`,
+    contents: [text],
+    mimeType: 'text/plain', // mime types: text/plain, text/html
+    sourceLanguageCode: 'en',
+    targetLanguageCode: targetLanguageCode,
+  };
+
+  // Run request
+  const [response] = await translationClient.translateText(request);
+
+  for (const translation of response.translations) {
+    console.log(`Translation: ${translation.translatedText}`);
+    return translation.translatedText;
+  }
+  return '';
+}
 
 //get all posts
 router.get('/', async (req, res) => {
@@ -23,7 +50,17 @@ router.get('/:id', async (req, res) => {
     if (result.rows.length === 0) {
       return res.status(400).json({ error: 'post not found' });
     }
-    res.json(result.rows[0]);
+
+    const post = result.rows[0];
+
+    // Translate the body to Amharic
+    const translatedBody = await translateText(post.body, 'am');
+
+    // Return both original + translated
+    res.json({
+      ...post,
+      translatedBody,
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
