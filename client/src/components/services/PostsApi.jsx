@@ -28,3 +28,17 @@ export async function deletePost(id) {
   }
   return res.json();
 }
+
+export async function updatePost(id, updatedPost) {
+  const res = await fetch(`http://localhost:3001/posts/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(updatedPost),
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to update post');
+  }
+
+  return res.json();
+}
