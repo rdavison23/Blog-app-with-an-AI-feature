@@ -18,3 +18,13 @@ export async function createPost(postData) {
   });
   return res.json();
 }
+
+export async function deletePost(id) {
+  const res = await fetch(`http://localhost:3001/posts/${id}`, {
+    method: 'DELETE',
+  });
+  if (!res.ok) {
+    throw new Error('Failed to delete post');
+  }
+  return res.json();
+}
