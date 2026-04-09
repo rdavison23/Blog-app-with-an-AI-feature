@@ -93,14 +93,25 @@ export default function PostDetail() {
               ? 'Translating...'
               : translatedBody}
           </p>
+          <div className="post-detail-footer">
+            {/* Centered Back Link */}
+            <div className="footer-center">
+              <Link to="/" className="back-link">
+                ← Back to Posts
+              </Link>
+            </div>
 
-          <Link to="/" className="back-link">
-            ← Back to Posts
-          </Link>
+            {/* Right-side Edit + Delete */}
+            <div className="footer-right">
+              <Link to={`/edit/${id}`} className="action-btn">
+                Edit
+              </Link>
 
-          <button className="delete-btn" onClick={handleDelete}>
-            Delete Post
-          </button>
+              <button className="action-btn" onClick={handleDelete}>
+                Delete
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
