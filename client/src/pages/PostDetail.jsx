@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getPost } from '../components/services/PostsApi';
 import LanguageDropdown from '../components/LanguageDropdown';
+import { useNavigate } from 'react-router-dom';
+import { deletePost } from '../components/services/PostsApi';
 import './PostDetail.css';
 
 export default function PostDetail() {
@@ -12,6 +14,18 @@ export default function PostDetail() {
   const [translatedBody, setTranslatedBody] = useState('');
   const [isTranslating, setIsTranslating] = useState(false);
   const [cache, setCache] = useState({});
+
+  const navigate = useNavigate();
+
+  async function handleDelete() {
+    const confirmDelete = window.confirm(
+      'Are you sure you want to delete this post?'
+    );
+    if (!confirmDelete) return;
+
+    await deletePost(id);
+    navigate('/');
+  }
 
   async function fetchTranslation(lang) {
     setIsTranslating(true);
@@ -83,6 +97,10 @@ export default function PostDetail() {
           <Link to="/" className="back-link">
             ← Back to Posts
           </Link>
+
+          <button className="delete-btn" onClick={handleDelete}>
+            Delete Post
+          </button>
         </div>
       </div>
     </div>
