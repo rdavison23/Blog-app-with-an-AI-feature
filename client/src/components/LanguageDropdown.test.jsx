@@ -10,3 +10,14 @@ test('renders all language options', () => {
   expect(screen.getByRole('option', { name: /spanish/i })).toBeInTheDocument();
   expect(screen.getByRole('option', { name: /french/i })).toBeInTheDocument();
 });
+
+test('updates selected value when user chooses a new language', async () => {
+  const user = userEvent.setup();
+  render(<LanguageDropdown onChange={() => {}} />);
+
+  const select = screen.getByRole('combobox');
+
+  await user.selectOptions(select, 'es');
+
+  expect(select.value).toBe('es');
+});
