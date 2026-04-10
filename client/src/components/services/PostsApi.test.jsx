@@ -24,3 +24,19 @@ describe('API tests', () => {
     expect(result).toEqual(mockData);
   });
 });
+
+test('getPost fetches /posts/:id', async () => {
+  const mockData = { id: 5, title: 'Post 5' };
+
+  global.fetch = vi.fn(() =>
+    Promise.resolve({
+      ok: true,
+      json: () => Promise.resolve(mockData),
+    })
+  );
+
+  const result = await getPost(5);
+
+  expect(fetch).toHaveBeenCalledWith('http://localhost:3001/posts/5');
+  expect(result).toEqual(mockData);
+});
