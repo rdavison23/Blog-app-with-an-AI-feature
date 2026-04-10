@@ -75,6 +75,11 @@ Create a .env file inside /server
 
 - DATABASE_URL=postgres://your-db-url
 
+Login to google cloud ([Instructions](https://docs.cloud.google.com/docs/authentication/provide-credentials-adc))
+
+- `gcloud auth application-default login`
+- `gcloud auth application-default set-quota-project <YOUR_PROJECT_ID>`
+
 Start the backend
 
 - npm run dev
