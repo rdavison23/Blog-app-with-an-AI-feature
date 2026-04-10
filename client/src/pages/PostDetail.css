@@ -1,0 +1,55 @@
+.post-detail-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.post-detail-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.post-detail-image {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+
+.post-detail-content {
+  padding: 25px;
+}
+
+.post-detail-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.post-detail-author {
+  font-size: 0.95rem;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.post-detail-body {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text);
+  white-space: pre-wrap;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 25px;
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.back-link:hover {
+  opacity: 0.7;
+}

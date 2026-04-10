@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import db from './db.js';
 import postsRouter from './routes/posts.js';
 
 dotenv.config();
@@ -17,7 +16,7 @@ app.get('/', (req, res) => {
   res.send('Fashion Blog API is running');
 });
 
-const PORT = 3001;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
