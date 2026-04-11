@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getPost } from '../components/services/PostsApi';
 import LanguageDropdown from '../components/LanguageDropdown';
+import { useNavigate } from 'react-router-dom';
+import { deletePost } from '../components/services/PostsApi';
 import './PostDetail.css';
 
 export default function PostDetail() {
@@ -12,6 +14,18 @@ export default function PostDetail() {
   const [translatedBody, setTranslatedBody] = useState('');
   const [isTranslating, setIsTranslating] = useState(false);
   const [cache, setCache] = useState({});
+
+  const navigate = useNavigate();
+
+  async function handleDelete() {
+    const confirmDelete = window.confirm(
+      'Are you sure you want to delete this post?'
+    );
+    if (!confirmDelete) return;
+
+    await deletePost(id);
+    navigate('/');
+  }
 
   async function fetchTranslation(lang) {
     setIsTranslating(true);
@@ -79,10 +93,25 @@ export default function PostDetail() {
               ? 'Translating...'
               : translatedBody}
           </p>
+          <div className="post-detail-footer">
+            {/* Centered Back Link */}
+            <div className="footer-center">
+              <Link to="/" className="back-link">
+                ← Back to Posts
+              </Link>
+            </div>
 
-          <Link to="/" className="back-link">
-            ← Back to Posts
-          </Link>
+            {/* Right-side Edit + Delete */}
+            <div className="footer-right">
+              <Link to={`/edit/${id}`} className="action-btn">
+                Edit
+              </Link>
+
+              <button className="action-btn" onClick={handleDelete}>
+                Delete
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -53,3 +53,113 @@
 .back-link:hover {
   opacity: 0.7;
 }
+
+.post-detail-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: rgb(244, 148, 148);
+  font-size: 0.9rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.post-detail-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  width: 100%;
+}
+
+/* Center Back to Posts */
+.footer-center {
+  flex: 1;
+  text-align: center;
+}
+
+/* Right side buttons */
+.footer-right {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Edit button */
+.edit-btn {
+  background: none;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #555;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.edit-btn:hover {
+  background: #f2f2f2;
+  color: #333;
+}
+
+/* Subtle delete button */
+.delete-btn {
+  background: none;
+  border: none;
+  color: #b55;
+  font-size: 0.9rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.delete-btn:hover {
+  opacity: 1;
+  color: #a33;
+}
+
+.post-detail-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  width: 100%;
+}
+
+/* Center Back to Posts */
+.footer-center {
+  flex: 1;
+  text-align: center;
+}
+
+/* Right side buttons */
+.footer-right {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Shared style for Edit + Delete */
+.action-btn {
+  background: none;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #555;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.action-btn:hover {
+  background: #f2f2f2;
+  color: #333;
+}

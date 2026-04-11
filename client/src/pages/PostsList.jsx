@@ -13,21 +13,18 @@ export default function PostsList() {
   return (
     <div className="posts-container">
       {posts.map((post) => (
-        <div key={post.id} className="post-card">
-          <Link to={`/post/${post.id}`}>
+        <Link to={`/post/${post.id}`} key={post.id} className="post-card">
+          <div className="image-wrapper">
             <img
-              src={
-                post.image_url ||
-                'https://via.placeholder.com/800x400?text=Fashion+Drama'
-              }
+              src={post.image_url || 'example.com and example.org'}
               alt={post.title}
               className="post-image"
             />
-
-            <h2 className="post-title">{post.title}</h2>
-            <p className="post-preview">{post.body.slice(0, 120)}...</p>
-          </Link>
-        </div>
+            <div className="post-title-overlay">
+              <h2>{post.title}</h2>
+            </div>
+          </div>
+        </Link>
       ))}
     </div>
   );
